@@ -105,8 +105,10 @@ void cal_for_frames(string video_path)
 int main()
 {
     std::vector<string> folder_list;
+    std::string start_path = "/home/haodong/Data/CSL_Isolated/color_video_125000/342/P30_18_02_4";
     findAllSubDir(folder_list, video_root.c_str(), false);
     sort(folder_list.begin(),folder_list.end());
+    bool flag = false;
     for (int i = 0; i < folder_list.size(); i++)
     {
         string folder = folder_list[i];
@@ -116,7 +118,16 @@ int main()
         for (int j = 0; j < subfolder_list.size(); j++)
         {
             string video_path = subfolder_list[j];
-            cal_for_frames(video_path);
+            if(video_path==start_path||flag)
+            {
+                flag = true;
+                cal_for_frames(video_path);
+            }
+            else
+            {
+                std::cout<<video_path<<std::endl;
+            }
+            
         }
         
     }
